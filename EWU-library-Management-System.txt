@@ -8,7 +8,7 @@ ORDER BY total_fines DESC;
 
 
 
-3.SELECT
+2.SELECT
   b.title,
   COUNT(l.loan_id) AS loan_count
 FROM loans l
@@ -22,7 +22,7 @@ ORDER BY
   loan_count DESC
 FETCH FIRST 5 ROWS ONLY;
 
-4.SELECT 
+3.SELECT 
     c.name AS category_name, 
     COUNT(b.book_id) AS number_of_books
 FROM 
@@ -34,7 +34,7 @@ GROUP BY
 ORDER BY 
     number_of_books DESC;
 
-5.SELECT 
+4.SELECT 
     b.title, 
     b.pub_year
 FROM 
@@ -46,7 +46,7 @@ JOIN
 WHERE 
     a.full_name = 'Brian W. Kernighan';
 
-6.SELECT 
+5.SELECT 
     m.full_name, 
     m.member_code, 
     f.amount
@@ -58,4 +58,5 @@ JOIN
     members m ON l.member_id = m.member_id
 WHERE 
     f.status = 'UNPAID';
+
 
