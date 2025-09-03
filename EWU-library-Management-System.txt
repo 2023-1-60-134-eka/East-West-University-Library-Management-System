@@ -1,0 +1,66 @@
+1. Total fines collected per member
+SELECT m.full_name, NVL(SUM(f.amount),0) AS total_fines
+FROM members m
+LEFT JOIN loans l ON m.member_id = l.member_id
+LEFT JOIN fines f ON l.loan_id = f.loan_id
+GROUP BY m.full_name
+ORDER BY total_fines DESC;
+
+2.5. Total fines collected per member
+SELECT m.full_name, NVL(SUM(f.amount),0) AS total_fines
+FROM members m
+LEFT JOIN loans l ON m.member_id = l.member_id
+LEFT JOIN fines f ON l.loan_id = f.loan_id
+GROUP BY m.full_name
+ORDER BY total_fines DESC;
+
+3.SELECT
+  b.title,
+  COUNT(l.loan_id) AS loan_count
+FROM loans l
+JOIN book_copies bc
+  ON l.copy_id = bc.copy_id
+JOIN books b
+  ON bc.book_id = b.book_id
+GROUP BY
+  b.title
+ORDER BY
+  loan_count DESC
+FETCH FIRST 5 ROWS ONLY;
+
+4.SELECT 
+    c.name AS category_name, 
+    COUNT(b.book_id) AS number_of_books
+FROM 
+    categories c
+LEFT JOIN 
+    books b ON c.category_id = b.category_id
+GROUP BY 
+    c.name
+ORDER BY 
+    number_of_books DESC;
+
+5.SELECT 
+    b.title, 
+    b.pub_year
+FROM 
+    books b
+JOIN 
+    book_authors ba ON b.book_id = ba.book_id
+JOIN 
+    authors a ON ba.author_id = a.author_id
+WHERE 
+    a.full_name = 'Brian W. Kernighan';
+
+6.SELECT 
+    m.full_name, 
+    m.member_code, 
+    f.amount
+FROM 
+    fines f
+JOIN 
+    loans l ON f.loan_id = l.loan_id
+JOIN 
+    members m ON l.member_id = m.member_id
+WHERE 
+    f.status = 'UNPAID';
