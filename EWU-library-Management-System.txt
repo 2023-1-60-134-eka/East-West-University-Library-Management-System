@@ -6,13 +6,7 @@ LEFT JOIN fines f ON l.loan_id = f.loan_id
 GROUP BY m.full_name
 ORDER BY total_fines DESC;
 
-2.5. Total fines collected per member
-SELECT m.full_name, NVL(SUM(f.amount),0) AS total_fines
-FROM members m
-LEFT JOIN loans l ON m.member_id = l.member_id
-LEFT JOIN fines f ON l.loan_id = f.loan_id
-GROUP BY m.full_name
-ORDER BY total_fines DESC;
+
 
 3.SELECT
   b.title,
@@ -64,3 +58,4 @@ JOIN
     members m ON l.member_id = m.member_id
 WHERE 
     f.status = 'UNPAID';
+
